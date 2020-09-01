@@ -48,6 +48,10 @@ function Todos() {
         user: formObject.user,
         item: formObject.item,
         quantity: formObject.quantity,
+        cost: formObject.cost,
+        produce: formObject.produce,
+        meat: formObject.meat,
+        driedGoods: formObject.driedGoods,
         notes: formObject.notes
       })
         .then(res => loadTodos())
@@ -77,6 +81,26 @@ function Todos() {
                 onChange={handleInputChange}
                 name="quantity"
                 placeholder="Quantity (required)"
+              />
+              <Input
+                onChange={handleInputChange}
+                name="cost"
+                placeholder="Cost (required)"
+              />
+              <Input
+                onChange={handleInputChange}
+                name="produce"
+                placeholder="Produce (required)"
+              />
+              <Input
+                onChange={handleInputChange}
+                name="meat"
+                placeholder="Meat (required)"
+              />
+              <Input
+                onChange={handleInputChange}
+                name="driedGoods"
+                placeholder="Dried goods (required)"
               />
               <TextArea
                 onChange={handleInputChange}

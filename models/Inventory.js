@@ -3,13 +3,14 @@ import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 
 const InventorySchema = new Schema({
-    cost: { type: Number, required: true },
+    user: {type: String},
+    item: { type: String},
     quantity: { type: Number, required: true },
-    unitCost: Number, //calculate ??
-    itemType: { type: String},
+    cost: { type: Number, required: true },
     produce: { type: String },
     meat: { type: String},
     driedGoods: { type: String },
+    notes: {type: String }
     // placeHolder: { type: String, required: true },
 });
 

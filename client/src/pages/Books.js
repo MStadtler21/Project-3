@@ -57,37 +57,42 @@ function Books() {
     return (
       <Container fluid>
         <Row>
-          <Col size="md-6">
+          <Col size="md-3">
             <Jumbotron>
-              <h1>What Books Should I Read?</h1>
+              <h3>Enter items that need to be prepped</h3>
             </Jumbotron>
             <form>
               <Input
                 onChange={handleInputChange}
-                name="title"
-                placeholder="Title (required)"
+                name="user"
+                placeholder="Designate task to employee (required)"
               />
               <Input
                 onChange={handleInputChange}
-                name="author"
-                placeholder="Author (required)"
+                name="item"
+                placeholder="Item (required)"
+              />
+              <Input
+                onChange={handleInputChange}
+                name="quantity"
+                placeholder="Quantity (required)"
               />
               <TextArea
                 onChange={handleInputChange}
-                name="synopsis"
-                placeholder="Synopsis (Optional)"
+                name="notes"
+                placeholder="Notes (Optional)"
               />
               <FormBtn
                 disabled={!(formObject.author && formObject.title)}
                 onClick={handleFormSubmit}
               >
-                Submit Book
+                Add to list
               </FormBtn>
             </form>
           </Col>
-          <Col size="md-6 sm-12">
+          <Col size="md-5 sm-12">
             <Jumbotron>
-              <h1>Books On My List</h1>
+              <h3>prep list</h3>
             </Jumbotron>
             {books.length ? (
               <List>
@@ -102,9 +107,15 @@ function Books() {
                   </ListItem>
                 ))}
               </List>
+              
             ) : (
-              <h3>No Results to Display</h3>
+              <h3>Nothing to prep</h3>
             )}
+          </Col>
+          <Col size="md-4 sm-12">
+          <Jumbotron>
+            <h3>In this area we can expand the item to see requirements</h3>
+          </Jumbotron>
           </Col>
         </Row>
       </Container>

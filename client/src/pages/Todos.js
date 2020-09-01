@@ -7,29 +7,29 @@ import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 import { Input, TextArea, FormBtn } from "../components/Form";
 
-function Books() {
+function Todos() {
   // Setting our component's initial state
-  const [books, setBooks] = useState([])
+  const [todos, setTodos] = useState([])
   const [formObject, setFormObject] = useState({})
 
-  // Load all books and store them with setBooks
-  useEffect(() => {
-    loadBooks()
-  }, [])
-
-  // Loads all books and sets them to books
-  function loadBooks() {
-    API.getBooks()
+  
+ 
+  // Loads all todos and sets them to todos
+  function loadTodos() {
+    API.getTodos()
       .then(res => 
-        setBooks(res.data)
+        setTodos(res.data)
       )
       .catch(err => console.log(err));
   };
 
-  // Deletes a book from the database with a given id, then reloads books from the db
-  function deleteBook(id) {
-    API.deleteBook(id)
-      .then(res => loadBooks())
+  useEffect(() => {
+    loadTodos()
+  }, [])
+  // Deletes a todo from the database with a given id, then reloads books from the db
+  function deleteTodos(id) {
+    API.deleteTodos(id)
+      .then(res => loadTodos())
       .catch(err => console.log(err));
   }
 
@@ -43,13 +43,14 @@ function Books() {
   // Then reload books from the database
   function handleFormSubmit(event) {
     event.preventDefault();
-    if (formObject.title && formObject.author) {
-      API.saveBook({
-        title: formObject.title,
-        author: formObject.author,
-        synopsis: formObject.synopsis
+    if (formObject.user && formObject.item) {
+      API.saveTodos({
+        user: formObject.user,
+        item: formObject.item,
+        quantity: formObject.quantity,
+        notes: formObject.notes
       })
-        .then(res => loadBooks())
+        .then(res => loadTodos())
         .catch(err => console.log(err));
     }
   };
@@ -59,7 +60,7 @@ function Books() {
         <Row>
           <Col size="md-3">
             <Jumbotron>
-              <h3>Enter items that need to be prepped</h3>
+              <h4>Enter items that need to be prepped</h4>
             </Jumbotron>
             <form>
               <Input
@@ -83,7 +84,7 @@ function Books() {
                 placeholder="Notes (Optional)"
               />
               <FormBtn
-                disabled={!(formObject.author && formObject.title)}
+                disabled={!(formObject.user && formObject.item)}
                 onClick={handleFormSubmit}
               >
                 Add to list
@@ -92,29 +93,29 @@ function Books() {
           </Col>
           <Col size="md-5 sm-12">
             <Jumbotron>
-              <h3>prep list</h3>
+              <h4>prep list</h4>
             </Jumbotron>
-            {books.length ? (
+            {todos.length ? (
               <List>
-                {books.map(book => (
-                  <ListItem key={book._id}>
-                    <Link to={"/books/" + book._id}>
+                {todos.map(todo => (
+                  <ListItem key={todo._id}>
+                    <Link to={"/todos/" + todo._id}>
                       <strong>
-                        {book.title} by {book.author}
+                        {todo.user} by {todo.item}
                       </strong>
                     </Link>
-                    <DeleteBtn onClick={() => deleteBook(book._id)} />
+                    <DeleteBtn onClick={() => deleteTodos(todo._id)} />
                   </ListItem>
                 ))}
               </List>
               
             ) : (
-              <h3>Nothing to prep</h3>
+              <h5>Nothing to prep</h5>
             )}
           </Col>
           <Col size="md-4 sm-12">
           <Jumbotron>
-            <h3>In this area we can expand the item to see requirements</h3>
+            <h4>Details</h4>
           </Jumbotron>
           </Col>
         </Row>
@@ -123,4 +124,4 @@ function Books() {
   }
 
 
-export default Books;
+export default Todos;

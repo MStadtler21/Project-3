@@ -3,7 +3,8 @@ const express = require("express");
 const mongoose = require("mongoose");
 const routes = require("./routes");
 const app = express();
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 8001;
+const Inventory= require("./models/Inventory");
 
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
@@ -14,6 +15,27 @@ if (process.env.NODE_ENV === "production") {
 }
 // Add routes, both API and view
 app.use(routes);
+
+const data = {
+  cost: 50,
+  quantity: 50,
+  unitCost: 1, //calculate ??
+  itemType: "yes",
+  produce: "yes",
+  meat: "no",
+  driedGoods: "no",
+   
+};
+
+Inventory.create(data)
+  .then(dbExample => {
+    console.log(dbExample);
+  })
+  .catch(({ message }) => {
+    console.log(message);
+  });
+
+
 
 // Connect to the Mongo DB
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/reactreadinglist");

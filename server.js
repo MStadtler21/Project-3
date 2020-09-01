@@ -1,20 +1,30 @@
 const express = require("express");
-
+const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
+const morgan = require("morgan");
+const path = require("path");
 const routes = require("./routes");
 const app = express();
-const PORT = process.env.PORT || 8001;
 const Inventory= require("./models/Inventory");
+require("dotenv/config");
 
-// Define middleware here
+//Define router routes
+const inventoryRoutes = require("./routes/api/inventories");
+
+app.use(bodyParser.json());
+
+const PORT = process.env.PORT || 3000;
+
+
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-// Serve up static assets (usually on heroku)
+
+
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
 // Add routes, both API and view
-app.use(routes);
+app.use("/inventory", inventoryRoutes);
 
 const data = {
   cost: 50,
@@ -38,7 +48,14 @@ Inventory.create(data)
 
 
 // Connect to the Mongo DB
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/reactreadinglist");
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/reactreadinglist", {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+});
+
+mongoose.connection.on("connected", () => {
+  console.log("Database connected.")
+});
 
 // Start the API server
 app.listen(PORT, function() {

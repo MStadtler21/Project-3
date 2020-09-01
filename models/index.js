@@ -1,3 +1,5 @@
-module.exports = {
-  Book: require("./Inventory") 
-};
+import Inventory from './Inventory.js';
+
+export default {
+    Inventory
+}

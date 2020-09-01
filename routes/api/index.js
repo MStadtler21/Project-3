@@ -1,7 +1,9 @@
-const router = require("express").Router();
-const bookRoutes = require("./books");
+import express from "express";
 
-// Book routes
-router.use("/books", bookRoutes);
+import inventoryRoutes from "./inventories.js";
 
-module.exports = router;
+const router = express.Router();
+
+router.use("/inventories", inventoryRoutes);
+
+export default router;

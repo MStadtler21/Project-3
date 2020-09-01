@@ -1,6 +1,6 @@
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+import mongoose from "mongoose";
 
+const Schema = mongoose.Schema;
 
 const InventorySchema = new Schema({
     cost: { type: Number, required: true },
@@ -11,8 +11,7 @@ const InventorySchema = new Schema({
     meat: { type: String},
     driedGoods: { type: String },
     // placeHolder: { type: String, required: true },
-  
-  });
+});
 
 //   const data = {
 //     cost: 50,
@@ -33,6 +32,6 @@ const InventorySchema = new Schema({
 //       console.log(message);
 //     });
 
-  const Inventory = mongoose.model("Inventory", InventorySchema);
+const Inventory = mongoose.model("Inventory", InventorySchema);
 
-module.exports = Inventory;
+export default Inventory;

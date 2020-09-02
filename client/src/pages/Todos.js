@@ -85,17 +85,23 @@ function Todos() {
                   <ListItem key={todo._id}>
                     <Link to={"/todos/" + todo._id}>
                       <strong>
-                        cost: {todo.cost}
+                        User: {todo.user}
                         <br />
-                        driedGoods: {todo.driedGoods}
+                        Item: {todo.item}
                         <br />
-                        itemType: {todo.itemType}
+                        Quantity: {todo.quantity}
                         <br />
-                        produce: {todo.produce}
+                        Cost: {todo.cost}
                         <br />
-                        quantity: {todo.quantity}
+                        Produce: {todo.produce}
                         <br />
-                        unitCost: {todo.unitCost}
+                        Meat: {todo.meat}
+                        <br />
+                        DriedGoods: {todo.cost}
+                        <br />
+                        <br />
+                        Notes: {todo.notes}
+                        <br />
                       </strong>
                     </Link>
                     <DeleteBtn onClick={() => deleteTodo(todo._id)} />

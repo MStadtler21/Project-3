@@ -1,10 +1,10 @@
 import express from "express";
 
-import { createInventory, getAllInventory } from "../../controllers/inventories.js";
+import { createOrder, getOrders } from "../../controllers/inventories.js";
 
 const router = express.Router();
 
-router.get("/", getAllInventory);
-router.post("/", createInventory);
+router.get("/", getOrders);
+router.post("/", createOrder);
 
 export default router;

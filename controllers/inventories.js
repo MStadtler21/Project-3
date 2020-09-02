@@ -1,17 +1,26 @@
 import Inventory from '../models/Inventory.js';
 
-export const createInventory = async (req, res) => {    
+export const createOrder = async (req, res) => {    
     const newInventory = new Inventory(req.body);
 
     try {
         await inventory.save();
 
-        res.json(newInventory);
-    } catch {
-        res.json({ message: err })
+        console.log(newInventory);
+
+        res.json(1, newInventory);
+    } catch (error) {
+        res.json({ message: error })
     };
 };
 
-export const getAllInventory = (req, res) => {
-    res.send("Placeholder")
+export const getOrders = async (req, res) => {
+    try {
+        const orders = await Inventory.find();
+        console.log(2, orders)
+        
+        res.json(orders)
+    } catch (error) {
+        res.json({ message: error })
+    }
 };

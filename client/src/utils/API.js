@@ -3,7 +3,7 @@ import axios from "axios";
 export default {
   // Gets all books
   getTodos: function() {
-    return axios.get("/api/todos");
+    return axios.get("http://localhost:3001/orders");
   },
   // Gets the book with the given id
   getTodo: function(id) {
@@ -15,6 +15,6 @@ export default {
   },
   // Saves a book to the database
   saveTodos: function(todoData) {
-    return axios.post("/api/todos", todoData);
+    return axios.post("http://localhost:3001/orders", todoData);
   }
 };

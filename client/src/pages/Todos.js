@@ -12,19 +12,17 @@ function Todos() {
   const [todos, setTodos] = useState([])
   const [formObject, setFormObject] = useState({})
 
-  
- 
   // Loads all todos and sets them to todos
-  function loadTodos() {
+  const loadTodos = () => {
     API.getTodos()
-      .then(res => 
-        setTodos(res.data)
-      )
+      .then(res => setTodos(res.data))
       .catch(err => console.log(err));
   };
 
   useEffect(() => {
-    loadTodos()
+    loadTodos();
+
+    console.log(todos);
   }, [])
   // Deletes a todo from the database with a given id, then reloads books from the db
   function deleteTodos(id) {
@@ -36,28 +34,26 @@ function Todos() {
   // Handles updating component state when the user types into the input field
   function handleInputChange(event) {
     const { name, value } = event.target;
-    setFormObject({...formObject, [name]: value})
+
+    console.log(formObject);
+
+    setFormObject({ ...formObject, [name]: value})
   };
 
   // When the form is submitted, use the API.saveBook method to save the book data
   // Then reload books from the database
-  function handleFormSubmit(event) {
+  const handleFormSubmit = (event) => {
     event.preventDefault();
-    if (formObject.user && formObject.item) {
-      API.saveTodos({
-        user: formObject.user,
-        item: formObject.item,
-        quantity: formObject.quantity,
-        cost: formObject.cost,
-        produce: formObject.produce,
-        meat: formObject.meat,
-        driedGoods: formObject.driedGoods,
-        notes: formObject.notes
-      })
-        .then(res => loadTodos())
-        .catch(err => console.log(err));
-    }
+
+    console.log(formObject);
+
+    // {{{{ finding an NPM module for validation }}}}
+    API.saveTodos(formObject)
+      .then(res => loadTodos())
+      .catch(err => console.log(err));
   };
+
+  console.log(todos);
 
     return (
       <Container fluid>
@@ -67,52 +63,15 @@ function Todos() {
               <h4>Enter items that need to be prepped</h4>
             </Jumbotron>
             <form>
-              <Input
-                onChange={handleInputChange}
-                name="user"
-                placeholder="Designate task to employee (required)"
-              />
-              <Input
-                onChange={handleInputChange}
-                name="item"
-                placeholder="Item (required)"
-              />
-              <Input
-                onChange={handleInputChange}
-                name="quantity"
-                placeholder="Quantity (required)"
-              />
-              <Input
-                onChange={handleInputChange}
-                name="cost"
-                placeholder="Cost (required)"
-              />
-              <Input
-                onChange={handleInputChange}
-                name="produce"
-                placeholder="Produce (required)"
-              />
-              <Input
-                onChange={handleInputChange}
-                name="meat"
-                placeholder="Meat (required)"
-              />
-              <Input
-                onChange={handleInputChange}
-                name="driedGoods"
-                placeholder="Dried goods (required)"
-              />
-              <TextArea
-                onChange={handleInputChange}
-                name="notes"
-                placeholder="Notes (Optional)"
-              />
-              <FormBtn
-                disabled={!(formObject.user && formObject.item)}
-                onClick={handleFormSubmit}
-              >
-                Add to list
-              </FormBtn>
+              <Input onChange={handleInputChange} name="user" placeholder="Designate task to employee (required)" />
+              <Input onChange={handleInputChange} name="item" placeholder="Item (required)" />
+              <Input onChange={handleInputChange} name="quantity" placeholder="Quantity (required)" />
+              <Input onChange={handleInputChange} name="cost" placeholder="Cost (required)" />
+              <Input onChange={handleInputChange} name="produce" placeholder="Produce (required)" />
+              <Input onChange={handleInputChange} name="meat" placeholder="Meat (required)" />
+              <Input onChange={handleInputChange} name="driedGoods" placeholder="Dried goods (required)" />
+              <TextArea onChange={handleInputChange} name="notes" placeholder="Notes (Optional)" />
+              <FormBtn disabled={!(formObject.user && formObject.item)} onClick={handleFormSubmit}> Add to list </FormBtn>
             </form>
           </Col>
           <Col size="md-5 sm-12">
@@ -125,7 +84,17 @@ function Todos() {
                   <ListItem key={todo._id}>
                     <Link to={"/todos/" + todo._id}>
                       <strong>
-                        {todo.user} by {todo.item}
+                        cost: {todo.cost}
+                        <br />
+                        driedGoods: {todo.driedGoods}
+                        <br />
+                        itemType: {todo.itemType}
+                        <br />
+                        produce: {todo.produce}
+                        <br />
+                        quantity: {todo.quantity}
+                        <br />
+                        unitCost: {todo.unitCost}
                       </strong>
                     </Link>
                     <DeleteBtn onClick={() => deleteTodos(todo._id)} />

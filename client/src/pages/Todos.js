@@ -14,6 +14,7 @@ function Todos() {
 
   // Loads all todos and sets them to todos
   const loadTodos = () => {
+    console.log("Loading Todos")
     API.getTodos()
       .then(res => setTodos(res.data))
       .catch(err => console.log(err));
@@ -25,8 +26,8 @@ function Todos() {
     console.log(todos);
   }, [])
   // Deletes a todo from the database with a given id, then reloads books from the db
-  function deleteTodos(id) {
-    API.deleteTodos(id)
+  function deleteTodo(id) {
+    API.deleteTodo(id)
       .then(res => loadTodos())
       .catch(err => console.log(err));
   }
@@ -97,7 +98,7 @@ function Todos() {
                         unitCost: {todo.unitCost}
                       </strong>
                     </Link>
-                    <DeleteBtn onClick={() => deleteTodos(todo._id)} />
+                    <DeleteBtn onClick={() => deleteTodo(todo._id)} />
                   </ListItem>
                 ))}
               </List>

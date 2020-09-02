@@ -11,7 +11,8 @@ export default {
   },
   // Deletes the book with the given id
   deleteTodo: function(id) {
-    return axios.delete("/api/todos/" + id);
+    console.log("Hit");
+    return axios.delete("http://localhost:3001/orders/" + id);
   },
   // Saves a book to the database
   saveTodos: function(todoData) {

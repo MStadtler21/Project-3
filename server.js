@@ -18,6 +18,10 @@ app.use(cors());
 
 app.use("/orders", inventoryRoutes);
 
+// app.use(function(req, res) {
+//   res.sendFile(path.join(__dirname, "../client/build/index.html"));
+// });
+
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }

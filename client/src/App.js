@@ -21,7 +21,7 @@ const App = () => {
   return (
     <Router>
       <Navbar />
-      <div>
+      <div style={{backgroundColor: "#f1f1e8"}}>
         <Switch>
           <Route exact path={["/", "/todos"]}>
             <Todos />

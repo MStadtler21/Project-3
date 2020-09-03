@@ -61,7 +61,7 @@ function Todos() {
         <Row>
           <Col size="md-3">
             <Jumbotron>
-              <h4>Enter items that need to be prepped</h4>
+              <h4>Enter item</h4>
             </Jumbotron>
             <form>
               <Input onChange={handleInputChange} name="user" placeholder="Designate task to employee (required)" />

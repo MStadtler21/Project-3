@@ -5,8 +5,10 @@ import NoMatch from "./pages/NoMatch";
 import Navbar from "./components/Navbar";
 import Loading from "./components/Loading";
 import { useAuth0 } from "@auth0/auth0-react";
+import Footer from "./components/Footer/index"
 // import LoginButton from "./components/LoginButton";
 // import LogoutButton from "./components/LogoutButton";
+import Styles from "./styles.css"
 
 
 const App = () => {
@@ -30,6 +32,7 @@ const App = () => {
             <NoMatch />
           </Route>
         </Switch>
+        <Footer></Footer>
       </div>
     </Router>
   );

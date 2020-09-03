@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
 import Auth0ProviderWithHistory from "./auth0-provider-with-history";
+import 'bootstrap/dist/css/bootstrap.css';
 
 // const domain = process.env.REACT_APP_AUTH0_DOMAIN;
 // const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID;

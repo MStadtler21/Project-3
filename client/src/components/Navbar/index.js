@@ -9,11 +9,12 @@ const Navbar = () => {
 	const { isAuthenticated } = useAuth0();
 
 	return (
-    <nav className="navbar navbar-expand-md navbar-light bg-light" style={{ display: "flex", justifyContent: "space-around" }}>
-        <h1 className="navbar-brand">MakeYourLifeEasy</h1>
+    <nav className="navbar navbar-light">
+        <h1 className="navbar-brand" >MakeYourLifeEasy</h1>
+        <div style={{ display: "flex", justifyContent: "flex-end"}}>
         <a className="navbar-brand" href="/orders">Orders</a>
         <a className="navbar-brand" href="/profile">Profile</a>
-        <div className="justify-content-end">{isAuthenticated ? <LogoutButton /> : <LoginButton />}</div>
+        <div className="justify-content-end" style={{paddingRight: 15}}>{isAuthenticated ? <LogoutButton /> : <LoginButton />}</div></div>
     </nav>
     );
 };

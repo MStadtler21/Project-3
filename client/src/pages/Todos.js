@@ -77,7 +77,7 @@ function Todos() {
           </Col>
           <Col size="md-5 sm-12">
             <Jumbotron>
-              <h4>prep list</h4>
+              <h4>Prep list</h4>
             </Jumbotron>
             {todos.length ? (
               <List>

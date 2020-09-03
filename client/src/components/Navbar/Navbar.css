@@ -1,4 +1,11 @@
 .navbar {
     display: flex;
     justify-content: space-around;
+    font-family: 'Open Sans', sans-serif;
+    background-color: #206a5d;
+   
+}
+
+.navbar-brand {
+    padding-right: 25px;
 }

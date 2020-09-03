@@ -6,6 +6,8 @@ import Navbar from "./components/Navbar";
 import Loading from "./components/Loading";
 import { useAuth0 } from "@auth0/auth0-react";
 import Footer from "./components/Footer/index"
+import ExternalApi from "../src/pages/ExternalApi";
+import history from "../src/utils/history";
 // import LoginButton from "./components/LoginButton";
 // import LogoutButton from "./components/LogoutButton";
 import Styles from "./styles.css"
@@ -13,13 +15,17 @@ import Styles from "./styles.css"
 
 const App = () => {
 
-  const { isLoading } = useAuth0();
+  const { isLoading, error } = useAuth0();
+
+  if (error) {
+    return <div>Oops... {error.message}</div>;
+  }
 
   if (isLoading) {
-    return <Loading />
+    return <Loading />;
   }
   return (
-    <Router>
+    <Router history={history}>
       <Navbar />
       <div style={{backgroundColor: "#f1f1e8"}}>
         <Switch>
@@ -31,6 +37,7 @@ const App = () => {
           <Route>
             <NoMatch />
           </Route>
+          <Route path="/external-api" component={ExternalApi} />
         </Switch>
         <Footer></Footer>
       </div>

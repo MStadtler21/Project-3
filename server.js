@@ -1,10 +1,14 @@
 import express from "express";
 import bodyParser from "body-parser";
 import mongoose from "mongoose";
+import morgan from "morgan";
+import helmet from "helmet";
+import path from "path";
 import dotenv from "dotenv";
 import cors from 'cors';
 import inventoryRoutes from "./routes/api/inventories.js";
 
+const { join } = path;
 const app = express();
 
 dotenv.config()
@@ -15,6 +19,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(bodyParser.json());
 app.use(cors());
+app.use(morgan("dev"));
+app.use(helmet());
 
 app.use("/orders", inventoryRoutes);
 

@@ -32,7 +32,7 @@ const App = () => {
     //I have commented out the authentication wall for development, but it will need to turned back on for production
     // isAuthenticated ? (
     <Router history={history}>
-      <Navbar className="navbar" />
+      <Navbar />
         <body>
           <main>
           <Router>

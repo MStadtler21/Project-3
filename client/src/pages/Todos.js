@@ -86,7 +86,7 @@ function Todos() {
               <FormBtn disabled={!(formObject.user && formObject.item)} onClick={handleFormSubmit}> Add to list </FormBtn>
             </form> 
           </Col> : 'Please log in'}
-          <Col size="md-5 sm-12">
+          <Col size="md-4 sm-12">
             <Jumbotron>
               <h4>Prep list</h4>
             </Jumbotron>

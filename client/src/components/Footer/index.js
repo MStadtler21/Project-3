@@ -1,10 +1,11 @@
 import React from "react";
+import GithubIcon from "../Icons/GithubIcon";
 import "./Footer.css";
 
 function Footer() {
   return (
     <div className="footer">
-      <a href="https://github.com/hamery93/Project-3">GitHub</a>
+      View Source Code: <GithubIcon />
       Contributors:
       <div>
            <li>Andrew Kepson</li>

@@ -6,8 +6,21 @@ import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 import { Input, TextArea, FormBtn } from "../components/Form";
+import { useAuth0 } from "@auth0/auth0-react";
 
+// https://community.auth0.com/t/getting-logged-out-after-refreshing-on-localhost-react-js-spa/28474
+// https://community.auth0.com/t/react-with-auth0-spa-looses-login-after-refresh/35461/2
+// https://community.auth0.com/t/persisting-login-between-refreshes/22675
+
+
+// For SPAs, you still need to use checkSession() to remain logged in. 
+// Have a look at the following blog post which provides a detailed example of a React app. Scroll down to the “Keeping Users Signed In after a Refresh” section, about 3/4s of the way down the page.
+
+
+// store tokens in the local storage, cookies 
 function Todos() {
+  const { user: { picture, name, email, sub }, isAuthenticated, isLoading } = useAuth0();
+
   // Setting our component's initial state
   const [todos, setTodos] = useState([])
   const [formObject, setFormObject] = useState({})
@@ -46,10 +59,8 @@ function Todos() {
   const handleFormSubmit = (event) => {
     event.preventDefault();
 
-    console.log(formObject);
-
     // {{{{ finding an NPM module for validation }}}}
-    API.saveTodos(formObject)
+    API.saveTodos({ ...formObject, userId: sub })
       .then(res => loadTodos())
       .catch(err => console.log(err));
   };
@@ -59,7 +70,7 @@ function Todos() {
     return (
       <Container>
         <Row>
-          <Col size="md-3">
+          { isAuthenticated ? <Col size="md-3">
             <Jumbotron>
               <h4>Enter item</h4>
             </Jumbotron>
@@ -73,8 +84,8 @@ function Todos() {
               <Input onChange={handleInputChange} name="driedGoods" placeholder="Dried goods (required)" />
               <TextArea onChange={handleInputChange} name="notes" placeholder="Notes (Optional)" />
               <FormBtn disabled={!(formObject.user && formObject.item)} onClick={handleFormSubmit}> Add to list </FormBtn>
-            </form>
-          </Col>
+            </form> 
+          </Col> : 'Please log in'}
           <Col size="md-5 sm-12">
             <Jumbotron>
               <h4>Prep list</h4>
@@ -104,7 +115,7 @@ function Todos() {
                         <br />
                       </strong>
                     </Link>
-                    <DeleteBtn onClick={() => deleteTodo(todo._id)} />
+                    {sub === todo.userId && <DeleteBtn onClick={() => deleteTodo(todo._id)} />} 
                   </ListItem>
                 ))}
               </List>

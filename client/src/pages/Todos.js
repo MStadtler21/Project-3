@@ -75,7 +75,6 @@ function Todos() {
               <h4>Enter item</h4>
             </Jumbotron>
             <form>
-              <Input onChange={handleInputChange} name="user" placeholder="Designate task to employee (required)" />
               <Input onChange={handleInputChange} name="item" placeholder="Item (required)" />
               <Input onChange={handleInputChange} name="quantity" placeholder="Quantity (required)" />
               <Input onChange={handleInputChange} name="cost" placeholder="Cost (required)" />
@@ -83,7 +82,7 @@ function Todos() {
               <Input onChange={handleInputChange} name="meat" placeholder="Meat (required)" />
               <Input onChange={handleInputChange} name="driedGoods" placeholder="Dried goods (required)" />
               <TextArea onChange={handleInputChange} name="notes" placeholder="Notes (Optional)" />
-              <FormBtn disabled={!(formObject.user && formObject.item)} onClick={handleFormSubmit}> Add to list </FormBtn>
+              <FormBtn onClick={handleFormSubmit}> Add to list </FormBtn>
             </form> 
           </Col> : 'Please log in'}
           <Col size="md-5 sm-12">
@@ -96,8 +95,6 @@ function Todos() {
                   <ListItem key={todo._id}>
                     <Link to={"/todos/" + todo._id}>
                       <strong>
-                        User: {todo.user}
-                        <br />
                         Item: {todo.item}
                         <br />
                         Quantity: {todo.quantity}

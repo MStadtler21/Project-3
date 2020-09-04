@@ -5,9 +5,11 @@ import "./Footer.css";
 function Footer() {
   return (
     <div className="footer">
-      View Source Code: <GithubIcon />
-      Contributors:
+      
       <div>
+      View Source Code: <GithubIcon />
+      <br></br>
+      Contributors:
            <li>Andrew Kepson</li>
            <li>Hisham Amery </li>
            <li>Matt Stadtler</li>

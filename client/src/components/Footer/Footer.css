@@ -1,9 +1,14 @@
 .footer {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
     background-color: #bfdcae;
-    height: 10vh;
+    height: 200px;
     width: 100%;
     position: fixed;
     bottom: 0;
+    padding-top: 10px;  
+}
+
+li {
+    list-style: none; 
 }

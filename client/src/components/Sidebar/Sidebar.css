@@ -1,0 +1,5 @@
+.sidebar {
+    overflow: scroll;
+    grid-area: "sidebar";
+    padding-left: 0;
+}

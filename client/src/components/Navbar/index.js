@@ -6,14 +6,15 @@ import LoginButton from '../LoginButton';
 import './Navbar.css';
 
 const Navbar = () => {
-	const { isAuthenticated } = useAuth0();
+    const { isAuthenticated } = useAuth0();
+    const location = useLocation();
 
 	return (
     <nav className="navbar navbar-light">
-        <h1 className="navbar-brand" >MakeYourLifeEasy</h1>
+        <Link to="/" className="h1 navbar-brand" >Heard</Link>
         <div style={{ display: "flex", justifyContent: "flex-end"}}>
-        <a className="navbar-brand" href="/orders">Orders</a>
-        <a className="navbar-brand" href="/profile">Profile</a>
+        <Link to="/orders" className={location.pathname="/orders" ? "navbar-brand active" : "navbar brand"}>Orders</Link>
+        <Link to="/profile" className={location.pathname="/profile" ? "navbar-brand active" : "navbar brand"}>Profile</Link>
         <div className="justify-content-end" style={{paddingRight: 15}}>{isAuthenticated ? <LogoutButton /> : <LoginButton />}</div></div>
     </nav>
     );

@@ -57,7 +57,7 @@ function Todos() {
   console.log(todos);
 
     return (
-      <Container fluid>
+      <Container>
         <Row>
           <Col size="md-3">
             <Jumbotron>
@@ -122,6 +122,5 @@ function Todos() {
       </Container>
     );
   }
-
 
 export default Todos;

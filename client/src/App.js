@@ -17,7 +17,7 @@ import Styles from "./styles.css";
 
 const App = () => {
 
-  const { isLoading, error } = useAuth0();
+  const { isAuthenticated, isLoading, error } = useAuth0();
 
   if (error) {
     return <div>Oops... {error.message}</div>;
@@ -26,7 +26,11 @@ const App = () => {
   if (isLoading) {
     return <Loading />;
   }
+
+  
   return (
+    //I have commented out the authentication wall for development, but it will need to turned back on for production
+    // isAuthenticated ? (
     <Router history={history}>
       <Navbar className="navbar" />
         <body>
@@ -40,6 +44,11 @@ const App = () => {
         </body>
       <Footer />
     </Router>
+    // ) : (
+    //   <div>
+    //     <ExternalApi />
+    //   </div>
+    // )
   );
 }
 

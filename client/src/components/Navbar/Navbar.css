@@ -1,7 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Peta&display=swap');
 .navbar {
     display: flex;
     justify-content: space-around;
-    font-family: 'Open Sans', sans-serif;
     background-color: #206a5d;
     position: fixed;
     height: 10vh;
@@ -10,4 +10,13 @@
 
 .navbar-brand {
     padding-right: 25px;
+    font-family: 'Lexend Peta', sans-serif;
+    font-weight: 200;
+}
+
+.fullButton {
+    font-size: 12px;
+    border-radius: 12px;
+    font-weight: bold;
+    background-color: #bfdcae;
 }

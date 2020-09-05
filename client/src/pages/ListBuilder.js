@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import DragNDrop from "../components/DragNDrop";
 import "./ListBuilder.css";
-
 import ExternalApi from "../pages/ExternalApi";
 import { useAuth0 } from "@auth0/auth0-react";
 import Loading from "../components/Loading";
@@ -29,7 +28,7 @@ const ListBuilder = () => {
      
         <>
         <Pdf targetRef={ref} filename="new-order.pdf">
-            {({ toPdf}) => <button onClick={toPdf}> Generate Pdf</button> }
+            {({ toPdf}) => <button onClick={toPdf} className="pdf-Button"> Generate Pdf</button> }
         </Pdf>
           <header ref={ref} className="Drag-header">
              <DragNDrop data={data} />

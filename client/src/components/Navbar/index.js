@@ -16,6 +16,7 @@ const Navbar = ({handle}) => {
         <Link to="/" className="h1 navbar-brand" >Heard</Link>
         <div style={{ display: "flex", justifyContent: "flex-end"}}>
         <Link to="/orders" className={location.pathname="/orders" ? "navbar-brand active" : "navbar brand"}>Orders</Link>
+        <Link to="/builder" className={location.pathname="/builder" ? "navbar-brand active" : "navbar brand"}>Builder</Link>
         <Link to="/profile" className={location.pathname="/profile" ? "navbar-brand active" : "navbar brand"}>Profile</Link>
         <div className="justify-content-end" style={{paddingRight: 15}}>{isAuthenticated ? <LogoutButton /> : <LoginButton />}</div></div>
     </nav>

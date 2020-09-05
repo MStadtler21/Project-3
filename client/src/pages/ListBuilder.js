@@ -1,6 +1,11 @@
-import React, { useState } from "react";
-import "./ListBuilder.css";
+import React, { useState, useEffect } from "react";
 import DragNDrop from "../components/DragNDrop";
+import "./ListBuilder.css";
+
+import ExternalApi from "../pages/ExternalApi";
+import { useAuth0 } from "@auth0/auth0-react";
+import Loading from "../components/Loading";
+
 import Pdf from "react-to-pdf";
 const ref = React.createRef();
 
@@ -10,7 +15,18 @@ const data = [
 ]
 
 const ListBuilder = () => {
+    const { isAuthenticated, isLoading, error } = useAuth0();
+
+    if (error) {
+        return <div>Oops... {error.message}</div>;
+    }
+
+    if (isLoading) {
+     return <Loading />;
+    }
     return (
+    isAuthenticated ? (
+     
         <>
         <Pdf targetRef={ref} filename="new-order.pdf">
             {({ toPdf}) => <button onClick={toPdf}> Generate Pdf</button> }
@@ -19,6 +35,11 @@ const ListBuilder = () => {
              <DragNDrop data={data} />
           </header>
         </>
+    ) : (
+       <div>
+        <ExternalApi />
+       </div>
+    )
     );
 }
 

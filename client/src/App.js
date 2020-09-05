@@ -30,8 +30,6 @@ const App = () => {
 
   
   return (
-    //I have commented out the authentication wall for development, but it will need to turned back on for production
-    // isAuthenticated ? (
     <Router history={history}>
       <Navbar handle = {handle}/>
       <FullScreen handle = {handle}>
@@ -48,11 +46,7 @@ const App = () => {
       <Footer />
       </FullScreen>
     </Router>
-    // ) : (
-    //   <div>
-    //     <ExternalApi />
-    //   </div>
-    // )
+
   );
 }
 

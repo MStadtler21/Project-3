@@ -6,29 +6,25 @@ import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 import { Input, TextArea, FormBtn } from "../components/Form";
+
+import ExternalApi from "../pages/ExternalApi";
 import { useAuth0 } from "@auth0/auth0-react";
+import Loading from "../components/Loading";
 
 // https://community.auth0.com/t/getting-logged-out-after-refreshing-on-localhost-react-js-spa/28474
 // https://community.auth0.com/t/react-with-auth0-spa-looses-login-after-refresh/35461/2
 // https://community.auth0.com/t/persisting-login-between-refreshes/22675
 
 
-// For SPAs, you still need to use checkSession() to remain logged in. 
-// Have a look at the following blog post which provides a detailed example of a React app. Scroll down to the “Keeping Users Signed In after a Refresh” section, about 3/4s of the way down the page.
-
-
-// store tokens in the local storage, cookies 
 function Todos() {
 
   
 
-  const { user: { picture, name, email, sub }, isAuthenticated, isLoading } = useAuth0();
+  const { user: { picture, name, email, sub }, isAuthenticated, isLoading, error } = useAuth0();
 
-  // Setting our component's initial state
   const [todos, setTodos] = useState([])
   const [formObject, setFormObject] = useState({})
 
-  // Loads all todos and sets them to todos
   const loadTodos = () => {
     console.log("Loading Todos")
     API.getTodos()
@@ -41,14 +37,14 @@ function Todos() {
 
     console.log(todos);
   }, [])
-  // Deletes a todo from the database with a given id, then reloads books from the db
+
   function deleteTodo(id) {
     API.deleteTodo(id)
       .then(res => loadTodos())
       .catch(err => console.log(err));
   }
 
-  // Handles updating component state when the user types into the input field
+
   function handleInputChange(event) {
     const { name, value } = event.target;
 
@@ -57,20 +53,24 @@ function Todos() {
     setFormObject({ ...formObject, [name]: value})
   };
 
-  // When the form is submitted, use the API.saveBook method to save the book data
-  // Then reload books from the database
   const handleFormSubmit = (event) => {
     event.preventDefault();
 
-    // {{{{ finding an NPM module for validation }}}}
     API.saveTodos({ ...formObject, userId: sub })
       .then(res => loadTodos())
       .catch(err => console.log(err));
   };
 
-  console.log(todos);
 
-    return (
+  if (error) {
+      return <div>Oops... {error.message}</div>;
+  }
+
+  if (isLoading) {
+   return <Loading />;
+  }
+  return (
+  isAuthenticated ? (
       
     <Container>
       
@@ -137,7 +137,12 @@ function Todos() {
         </Row>
       </Container>
       
-    );
-  }
+    ) : (
+      <div>
+       <ExternalApi />
+      </div>
+   )
+  );
+};
 
 export default Todos;

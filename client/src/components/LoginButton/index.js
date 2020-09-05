@@ -1,6 +1,7 @@
 import React from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 // https://auth0.com/docs/quickstart/spa/react/01-login
+import "./LoginButton.css";
 const LoginButton = () => {
     //import useAuth0 hook
     const {loginWithRedirect} = useAuth0();
@@ -11,7 +12,7 @@ const LoginButton = () => {
         onClick={() => {loginWithRedirect()}}
         id="qsLoginBtn"
         variant="primary"
-        className="btn-margin"
+        className="loginButton"
         >
             Log In
         </button>

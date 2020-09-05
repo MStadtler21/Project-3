@@ -1,5 +1,5 @@
 .Drag-header {
-    background-color: #282c34;
+    background-color: #ffffff;
     min-height: 100vh;
     display: flex;
     font-size: calc(10px + 2vmin);
@@ -7,6 +7,7 @@
 }
 
 .drag-n-drop {
+    background-color: #ffffff;
     padding: .5rem;
     display: grid;
     gap: .5rem;

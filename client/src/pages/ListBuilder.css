@@ -1,0 +1,42 @@
+.Drag-header {
+    background-color: #282c34;
+    min-height: 100vh;
+    display: flex;
+    font-size: calc(10px + 2vmin);
+    color: whitesmoke;
+}
+
+.drag-n-drop {
+    padding: .5rem;
+    display: grid;
+    gap: .5rem;
+    width: 100%;
+    height: 100%;
+    grid-template-columns: repeat(auto-fill, 300px);
+}
+
+.dnd-group {
+    padding: .5rem;
+    background-color:#353941;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.dnd-item {
+    background-color: white;
+    color: #282c34;
+    min-height: 150px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dnd-item:not(:last-of-type) {
+    margin-bottom: .5rem;
+}
+
+.dnd-item * {
+    margin: 0;
+
+}

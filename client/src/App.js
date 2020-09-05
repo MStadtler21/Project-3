@@ -13,6 +13,7 @@ import Footer from "./components/Footer/index"
 import Todos from "./pages/Todos";
 import Profile from "./pages/Profile";
 import { FullScreen, useFullScreenHandle } from "react-full-screen"
+import ListBuilder from "./pages/ListBuilder";
 // import Styles from "./styles.css";
 
 const App = () => {
@@ -39,6 +40,7 @@ const App = () => {
           <Router>
               <Route exact path="/" component={Welcome} />
               <Route exact path="/orders" component={Todos} />
+              <Route exact path="/builder" component={ListBuilder} />
               <Route path="/profile" component={Profile} />
           </Router>
           </main>

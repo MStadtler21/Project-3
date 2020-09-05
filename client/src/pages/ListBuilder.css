@@ -40,3 +40,10 @@
     margin: 0;
 
 }
+
+.pdf-Button {
+    font-size: 12px;
+    border-radius: 12px;
+    font-weight: bold;
+    background-color: #bfdcae;
+}

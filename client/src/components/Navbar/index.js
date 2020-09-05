@@ -12,7 +12,7 @@ const Navbar = ({handle}) => {
 
 	return (
     <nav className="navbar navbar-light">
-        <button onClick={handle.enter}>Enter Fullscreen</button>
+        <button onClick={handle.enter} className="fullButton">Fullscreen</button>
         <Link to="/" className="h1 navbar-brand" >Heard</Link>
         <div style={{ display: "flex", justifyContent: "flex-end"}}>
         <Link to="/orders" className={location.pathname="/orders" ? "navbar-brand active" : "navbar brand"}>Orders</Link>

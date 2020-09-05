@@ -1,14 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import DeleteBtn from "../components/DeleteBtn";
 import Jumbotron from "../components/Jumbotron";
-import FullButton from "./components/FullButton";
 import API from "../utils/API";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 import { Input, TextArea, FormBtn } from "../components/Form";
 import { useAuth0 } from "@auth0/auth0-react";
-import { FullScreen, useFullScreenHandle } from "react-full-screen"
+
 // https://community.auth0.com/t/getting-logged-out-after-refreshing-on-localhost-react-js-spa/28474
 // https://community.auth0.com/t/react-with-auth0-spa-looses-login-after-refresh/35461/2
 // https://community.auth0.com/t/persisting-login-between-refreshes/22675
@@ -20,9 +19,10 @@ import { FullScreen, useFullScreenHandle } from "react-full-screen"
 
 // store tokens in the local storage, cookies 
 function Todos() {
-  const { user: { picture, name, email, sub }, isAuthenticated, isLoading } = useAuth0();
 
-  const handle = useFullScreenHandle();
+  
+
+  const { user: { picture, name, email, sub }, isAuthenticated, isLoading } = useAuth0();
 
   // Setting our component's initial state
   const [todos, setTodos] = useState([])
@@ -71,9 +71,9 @@ function Todos() {
   console.log(todos);
 
     return (
-    <FullScreen>
-      <Container>
-        <FullButton onClick={handle.enter}>Enter Fullscreen</FullButton>
+      
+    <Container>
+      
         <Row>
           { isAuthenticated ? <Col size="md-3">
             <Jumbotron>
@@ -136,7 +136,7 @@ function Todos() {
           </Col>
         </Row>
       </Container>
-      </FullScreen>
+      
     );
   }
 

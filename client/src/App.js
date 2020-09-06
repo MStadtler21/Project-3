@@ -31,8 +31,8 @@ const App = () => {
   
   return (
     <Router history={history}>
-      <Navbar handle = {handle}/>
       <FullScreen handle = {handle}>
+      <Navbar handle = {handle}/>
         <body>
           <main>
           <Router>

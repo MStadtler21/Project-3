@@ -1,11 +1,4 @@
-html, #root, body {
-     overflow: none;
-     overflow-y: hidden;
-
-}
-
 body {
-     background-color: #f1f1e8;
      color: #206a5d;
     
      margin: 0;
@@ -20,7 +13,6 @@ main {
      padding-bottom: 50px;
      height: 80vh;
      overflow: scroll;
-     background-color: #f1f1e8;
 }
 
 div {

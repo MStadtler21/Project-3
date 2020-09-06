@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import DeleteBtn from "../components/DeleteBtn";
 import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
@@ -20,7 +20,7 @@ function Todos() {
 
   
 
-  const { user: { picture, name, email, sub }, isAuthenticated, isLoading, error } = useAuth0();
+  const { user: { sub }, isAuthenticated, isLoading, error } = useAuth0();
 
   const [todos, setTodos] = useState([])
   const [formObject, setFormObject] = useState({})

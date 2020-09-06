@@ -15,17 +15,18 @@ dotenv.config()
 
 const PORT = process.env.PORT || 3001;
 
-
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 app.use(bodyParser.json());
 app.use(cors());
-app.use(helmet());
-
 app.use(morgan("dev"));
-app.use("/orders", inventoryRoutes);
+app.use(helmet());
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
+
+app.use("/orders", inventoryRoutes);
 
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "../client/build/index.html"));
@@ -36,6 +37,3 @@ app.get("*", (req, res) => {
 mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: false })
   .then(() => app.listen(PORT, () => console.log(`Server Running on Port: http://localhost:${PORT}`)))
   .catch((error) => console.log(`${error} did not connect`));
-
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());

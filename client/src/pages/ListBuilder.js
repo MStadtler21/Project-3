@@ -8,9 +8,14 @@ import Loading from "../components/Loading";
 import Pdf from "react-to-pdf";
 const ref = React.createRef();
 
+// const data = [
+//     {title: 'group 1', items: ['Rice, Flour, Beans ', 'Chicken, Pork, Beef']},
+//     {title: 'group 2', items: ['Coffee, Tea', 'Tomatoes, Onions, Lettuce']}
+// ]
+
 const data = [
-    {title: 'group 1', items: ['1', '2', '3']},
-    {title: 'group 2', items: ['4', '5']}
+    {title: 'group 1', items: ['Rice, Flour, Beans ', 'Chicken, Pork, Beef']},
+    {title: 'group 2', items: ['Coffee, Tea', 'Tomatoes, Onions, Lettuce']}
 ]
 
 const ListBuilder = () => {

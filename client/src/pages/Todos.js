@@ -130,9 +130,7 @@ function Todos() {
             )}
           </Col>
           <Col size="md-4 sm-12">
-          <Jumbotron>
-            <h4>Details</h4>
-          </Jumbotron>
+         
           </Col>
         </Row>
       </Container>
